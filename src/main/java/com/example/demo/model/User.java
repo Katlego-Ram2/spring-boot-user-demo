@@ -12,6 +12,7 @@ public class User {
     }
 //set getters and setters
 
+
     public long getId() {
         return id;
     }
