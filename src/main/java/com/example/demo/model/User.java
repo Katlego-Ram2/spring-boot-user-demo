@@ -10,6 +10,7 @@ public class User {
         this.name = name;
         this.surname = surname;
     }
+
 //set getters and setters
 
 
