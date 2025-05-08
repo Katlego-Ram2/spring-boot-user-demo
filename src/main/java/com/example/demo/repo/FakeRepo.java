@@ -30,7 +30,8 @@ public class FakeRepo implements FakeRepoInterface {
     public String insertUser(long id, String name, String surname) {
         User user = new User(id, name, surname);
         users.add(user);
-        return name + " added";
+        return String.format("User %s has been successfully added with ID: %d.", name, id);
+
     }
 
     /**
