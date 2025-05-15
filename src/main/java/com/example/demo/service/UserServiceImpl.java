@@ -3,12 +3,12 @@ package com.example.demo.service;
 import com.example.demo.repo.FakeRepoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 /**
- * Service implementation for user operations.
- * Delegates data operations to the FakeRepoInterface.
+ * Implementation of the {@link UserService} interface that provides user management operations.
+ * <p>
+ * This service interacts with the repository layer to perform CRUD operations on user data.
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     /**
      * Constructor-based dependency injection for the fake repository.
      *
-     * @param fakeRepo the in-memory user repository
+     * @param fakeRepo the in-memory user repository.
      */
     @Autowired
     public UserServiceImpl(FakeRepoInterface fakeRepo) {
