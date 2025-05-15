@@ -27,27 +27,29 @@ public class UserController {
      *
      * @param name    The user's first name.
      * @param surname The user's surname.
-     * @return A success message.
+     * @return A success message with the user's ID.
      */
     @PostMapping
     public String addUser(
             @RequestParam String name,
             @RequestParam String surname
     ) {
+        // Generate a user ID using current time (or another method)
+        long userId = System.currentTimeMillis(); // Simulating unique user ID generation
         userService.addUser(name, surname);
-        return name + " added successfully.";
+        return name + " added successfully with ID: " + userId;
     }
 
     /**
      * Retrieves a user by their ID.
      *
      * @param id The user's unique ID.
-     * @return A status message after lookup.
+     * @return A message with user details.
      */
     @GetMapping("/{id}")
     public String getUser(@PathVariable long id) {
         userService.getUser(id);
-        return "User lookup completed.";
+        return "User with ID: " + id + " lookup completed.";
     }
 
     /**
@@ -59,6 +61,6 @@ public class UserController {
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable long id) {
         userService.removeUser(id);
-        return "User deletion attempted.";
+        return "User with ID: " + id + " deletion attempted.";
     }
 }

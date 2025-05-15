@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.repo.FakeRepoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
 
 /**
  * Implementation of the {@link UserService} interface that provides user management operations.
@@ -15,9 +16,9 @@ public class UserServiceImpl implements UserService {
     private final FakeRepoInterface fakeRepo;
 
     /**
-     * Constructs a new {@link UserServiceImpl} with the provided {@link FakeRepoInterface}.
+     * Constructor-based dependency injection for the fake repository.
      *
-     * @param fakeRepo the {@link FakeRepoInterface} instance used to interact with the repository layer.
+     * @param fakeRepo the in-memory user repository.
      */
     @Autowired
     public UserServiceImpl(FakeRepoInterface fakeRepo) {
@@ -25,22 +26,22 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Adds a new user with the given name and surname to the repository.
-     * A unique ID is generated based on the current system time.
+     * Adds a new user by generating an alphanumeric ID and calling the repository.
      *
-     * @param name the name of the user to add.
-     * @param surname the surname of the user to add.
+     * @param name    The user's first name.
+     * @param surname The user's last name.
      */
     @Override
     public void addUser(String name, String surname) {
-        long id = System.currentTimeMillis();
+        // Generate an alphanumeric ID using UUID's hashCode
+        long id = Math.abs(UUID.randomUUID().toString().hashCode());
         System.out.println(fakeRepo.insertUser(id, name, surname));
     }
 
     /**
-     * Removes a user by their unique ID from the repository.
+     * Removes a user by ID.
      *
-     * @param id the unique ID of the user to remove.
+     * @param id The ID of the user to remove.
      */
     @Override
     public void removeUser(long id) {
@@ -48,9 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Retrieves a user by their unique ID from the repository.
+     * Retrieves and displays a user by ID.
      *
-     * @param id the unique ID of the user to retrieve.
+     * @param id The ID of the user to retrieve.
      */
     @Override
     public void getUser(long id) {
